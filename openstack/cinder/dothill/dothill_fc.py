@@ -139,7 +139,22 @@ class DotHillFCDriver(cinder.volume.driver.FibreChannelDriver):
                                         self.__class__.__name__)
         return stats
 
+    """Creating Volume from image
+       1.  /usr/lib/python2.7/dist-packages/cinder/volume/flows/manager/create_volume.py _copy_image_to_volume
+       2.  /usr/lib/python2.7/dist-packages/cinder/volume/driver.py copy_image_to_volume 
+       3. /usr/lib/python2.7/dist-packages/cinder/volume/driver.py  _attach_volume
+       4. /usr/lib/python2.7/dist-packages/cinder/volume/drivers/dothill/dothill_fc.py create_export
+
+       Latest create_export is called with 4 arguments in kilo only 3 arguments
+
+original fn
+
     def create_export(self, context, volume, connector):
+        pass
+"""
+
+
+    def create_export(self, context, volume):
         pass
 
     def ensure_export(self, context, volume):
