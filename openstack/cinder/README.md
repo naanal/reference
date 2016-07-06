@@ -15,7 +15,7 @@ git clone https://github.com/naanal/reference
 ```python
 cp -a reference/openstack/cinder/dothill /usr/lib/python2.7/dist-packages/cinder/volume/drivers/
 cp -a reference/openstack/cinder/interface /usr/lib/python2.7/dist-packages/cinder/
-cp -a reference/openstack/cinder/hp_msa /usr/lib/python2.7/dist-packages/cinder/volume/drivers/san/
+cp -a reference/openstack/cinder/hp /usr/lib/python2.7/dist-packages/cinder/volume/drivers/san/
 ```
 
 
