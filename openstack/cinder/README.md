@@ -1,6 +1,14 @@
 
 # SAN Configuration
 
+Run on any one of the host
+
+```python
+source ~/openrc
+cinder type-create hpmsa
+cinder type-key hpmsa set volume_backend_name=hpmsa-array
+```
+
 
 ```python
 apt-get install git
@@ -20,11 +28,6 @@ cp reference/openstack/cinder/exception.py /usr/lib/python2.7/dist-packages/cind
 ```
 
 
-```python
-source ~/openrc
-cinder type-create hpmsa
-cinder type-key hpmsa set volume_backend_name=hpmsa-array
-```
 
 modify /etc/cinder/cinder.conf with reference to http://docs.openstack.org/liberty/config-reference/content/hp-msa-driver.html and example_cinder.conf
 
