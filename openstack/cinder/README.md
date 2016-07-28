@@ -1,7 +1,7 @@
 
 # SAN Configuration
 
-Run on any one of the host
+ Run on any one of the Host
 
 ```python
 source ~/openrc
@@ -9,6 +9,7 @@ cinder type-create hpmsa
 cinder type-key hpmsa set volume_backend_name=hpmsa-array
 ```
 
+Run on All Host
 
 ```python
 apt-get install git
