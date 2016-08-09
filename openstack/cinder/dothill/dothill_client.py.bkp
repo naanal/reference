@@ -74,20 +74,10 @@ class DotHillClient(object):
         return_code = tree.findtext(".//PROPERTY[@name='return-code']")
         if not return_code:
             raise exception.DotHillRequestError(message="No status found")
-        
-        ###  Change to Fix Copy Conflict Error  - START ###
-        LOG.debug("Status Code from SAN %s", return_code)
- 
+
         # If no error occurred, just return.
-        
-        #if return_code == '0':
-        #    return
-
-        if return_code == '0' or return_code == '-3529' :
+        if return_code == '0':
             return
-        
-        ###  END  ###
-
 
         # Format a message for the status code.
         msg = "%s (%s)" % (tree.findtext(".//PROPERTY[@name='response']"),
@@ -295,24 +285,7 @@ class DotHillClient(object):
         if backend_type == 'linear':
             return self.linear_copy_volume(src_name, dest_name, dest_bknd_name)
         # Copy a virtual volume to another in the same pool.
-
-        ### Change to Fix Copy Conflict - START ###
-        #self._request("/copy/volume", src_name, name=dest_name)
-
-        tree = self._request("/copy/volume", src_name, name=dest_name)
-        return_code = tree.findtext(".//PROPERTY[@name='return-code']")
-        count = 10
-        c = 0
-        wait_time = 20
-        while return_code == '-3529' and c < count :
-            time.sleep(wait_time)
-            c += 1
-            tree = self._request("/copy/volume", src_name, name=dest_name)
-            return_code = tree.findtext(".//PROPERTY[@name='return-code']")
-            LOG.debug("Hit Copy Conflict Error -  Wait Loop Count - %d "%c)
-            
-        ### END ###
-
+        self._request("/copy/volume", src_name, name=dest_name)
         LOG.debug("Volume copy of source_volume: %(src_name)s to "
                   "destination_volume: %(dest_name)s started.",
                   {'src_name': src_name, 'dest_name': dest_name, })
